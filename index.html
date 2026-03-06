@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Bet · MCQ Quiz (1-50) · Anton Chekhov</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 40% 30%, #2a4f45, #0f2e2a 90%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+            padding: 8px;
+            margin: 0;
+            perspective: 1200px;
+        }
+
+        /* main 3D card */
+        .threeD-card {
+            max-width: 550px;
+            width: 100%;
+            background: rgba(235, 225, 200, 0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 60px 60px 50px 50px;
+            padding: 20px 16px 15px 16px;
+            box-shadow: 
+                0 30px 40px -15px #000000cc,
+                0 0 0 2px #ccb48c,
+                inset 0 -8px 12px #9f8f64,
+                inset 0 8px 12px #ffffe0;
+            transform: rotateX(2deg) rotateY(-0.5deg) translateZ(8px);
+            border: 1px solid #dbbc8c;
+            transition: transform 0.2s;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .threeD-card:hover {
+            transform: rotateX(1deg) rotateY(-0.2deg) translateZ(12px);
+        }
+
+        /* header */
+        .header-3d {
+            text-align: center;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 8px 6px #00000050);
+        }
+        .glow-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(145deg, #2b5e4e, #6b7a4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 4px 4px 0 #b8a87c, 6px 6px 10px #00000070;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .glow-title span {
+            font-size: 2.0rem;
+            filter: drop-shadow(0 0 6px #ecd67a);
+        }
+        .author-3d {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: #3b6350;
+            color: #fcf0d5;
+            display: inline-block;
+            padding: 5px 28px;
+            border-radius: 60px;
+            border: 3px solid #cfb07c;
+            box-shadow: 0 10px 0 #2a473a, 0 12px 18px black;
+            margin: 4px 0 4px;
+            transform: rotate(-0.5deg);
+        }
+        .fifty-3d {
+            font-size: 1.1rem;
+            font-weight: 800;
+            background: #584a2f;
+            color: #ffeec9;
+            padding: 5px 25px;
+            border-radius: 60px;
+            border: 2px solid #c2a158;
+            box-shadow: inset 0 -5px 0 #423b22, 0 8px 0 #3d311b;
+            display: inline-block;
+            transform: translateY(-3px);
+            margin-bottom: 5px;
+        }
+
+        /* progress row */
+        .progress-3d {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #7f8f7a80;
+            padding: 5px 12px 5px 16px;
+            border-radius: 50px;
+            border: 2px solid #b8a16e;
+            box-shadow: inset 0 2px 8px #e8dbaa, 0 6px 0 #556845;
+            margin: 4px 0 8px;
+        }
+        .prog-track {
+            flex: 1;
+            height: 16px;
+            background: #2d4035;
+            border-radius: 30px;
+            border: 2px solid #a18f5a;
+            overflow: hidden;
+            box-shadow: inset 0 3px 6px #1f2d22;
+        }
+        .prog-glow {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #edd48b, #d69d3a);
+            border-radius: 30px;
+            box-shadow: 0 0 18px #f8b551;
+            transition: width 0.3s;
+        }
+        .streak-3d {
+            background: #6f563a;
+            color: #ffeec9;
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: 2px solid #e7b56c;
+            box-shadow: 0 5px 0 #4f3f26, inset 0 2px 10px #ffd994;
+            white-space: nowrap;
+        }
+
+        /* question panel */
+        .question-vault {
+            background: #e3ddc0;
+            border-radius: 42px;
+            padding: 18px 16px;
+            border: 3px solid #a3905e;
+            box-shadow: inset 0 -8px 0 #8b7b4f, inset 0 8px 12px #ffffe0, 0 18px 20px -8px #000000b0;
+            margin-bottom: 6px;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+        .q-3d {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1f4030;
+            line-height: 1.45;
+            padding-left: 12px;
+            border-left: 12px solid #bf954b;
+            text-shadow: 1px 1px 0 #dbd6a4;
+            margin-bottom: 18px;
+            white-space: pre-wrap;
+        }
+
+        .options-3d {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .opt-3d {
+            background: #f5f2dd;
+            border: 3px solid #8f7b48;
+            border-radius: 60px;
+            padding: 12px 18px 12px 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 600;
+            font-size: 1.0rem;
+            color: #1f3f2f;
+            cursor: pointer;
+            box-shadow: 0 7px 0 #5f6b52, 0 10px 18px #1a2f2f80;
+            transition: 0.08s linear;
+            transform: translateY(-2px);
+        }
+        .opt-3d:active {
+            transform: translateY(5px);
+            box-shadow: 0 4px 0 #5f6b52, 0 10px 18px #1a2f2f80;
+        }
+        .opt-3d.disabled {
+            pointer-events: none;
+            filter: brightness(1.05);
+            opacity: 0.95;
+        }
+        .opt-3d.correct {
+            background: #bfddb0;
+            border-color: #3c854a;
+            box-shadow: 0 5px 0 #2a6b32, 0 10px 18px #1d5428;
+        }
+        .opt-3d.wrong {
+            background: #f3cfbe;
+            border-color: #b1583a;
+            box-shadow: 0 5px 0 #944b30, 0 10px 18px #692d1b;
+        }
+        .letter-3d {
+            background: #5f6f4a;
+            min-width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fcf3cf;
+            border: 3px solid #eac382;
+            box-shadow: 0 4px 0 #3f4739;
+        }
+        .correct .letter-3d { background: #1f7845; border-color: #f7eca9; }
+        .wrong .letter-3d { background: #b6492e; border-color: #ffdbaa; }
+
+        .feedback-3d {
+            background: #c0bc97;
+            border-radius: 50px;
+            padding: 8px 22px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 10px;
+            border: 2px solid #888259;
+            box-shadow: inset 0 2px 8px #fffbc2, 0 5px 0 #5e6253;
+            color: #1f3832;
+            font-size: 0.95rem;
+        }
+
+        /* bottom controls */
+        .bottom-controls {
+            margin-top: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .nav-3d {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+        }
+        .nav-btn-3d {
+            flex: 1;
+            background: #ccbf9b;
+            border: 4px solid #857652;
+            border-radius: 60px;
+            padding: 12px 5px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #1d3f3f;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 7px 0 #616653, 0 8px 14px #00000060;
+            transition: 0.06s;
+            transform: translateY(-3px);
+        }
+        .nav-btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #616653, 0 8px 14px #00000060;
+        }
+        .nav-btn-3d:disabled {
+            opacity: 0.45;
+            transform: translateY(0);
+            box-shadow: 0 5px 0 #4f5453;
+            pointer-events: none;
+        }
+
+        /* horizontal scroller - fixed centered label */
+        .chip-scroller {
+            background: #687a6580;
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 10px 8px;
+            border: 3px solid #aa9457;
+            box-shadow: inset 0 2px 8px #f3efba, 0 8px 0 #49564c;
+            margin: 4px 0 5px;
+        }
+        .scroll-label-3d {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #17322a;
+            background: #cfc1a6;
+            padding: 6px 18px;
+            border-radius: 40px;
+            margin: 0 auto 12px auto;
+            border: 2px solid #9e884b;
+            box-shadow: inset 0 2px 8px #fff7cf, 0 4px 0 #5f6b59;
+            transform: translateY(-3px);
+            width: fit-content;
+            text-align: center;
+            display: table;
+        }
+        .chip-horizontal {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 5px 2px 10px 2px;
+            scrollbar-width: thin;
+            scrollbar-color: #9b884b #dacaa4;
+            -webkit-overflow-scrolling: touch;
+        }
+        .chip-horizontal::-webkit-scrollbar {
+            height: 6px;
+        }
+        .chip-horizontal::-webkit-scrollbar-thumb {
+            background: #9b884b;
+            border-radius: 30px;
+        }
+        .num-chip-3d {
+            min-width: 46px;
+            height: 46px;
+            border-radius: 40px;
+            background: #e3dcb1;
+            border: 4px solid #877e43;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #232b1a;
+            box-shadow: 0 6px 0 #535f4a, 0 6px 12px #00000070;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: 0.05s;
+        }
+        .num-chip-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #535f4a, 0 6px 12px #00000070;
+        }
+        .num-chip-3d.current-chip {
+            background: #d8b567;
+            border-color: #6b592b;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 4px #f7da95, 0 6px 0 #5c512b;
+        }
+        .num-chip-3d.answered-chip {
+            background: #adcf9a;
+            border-color: #468049;
+        }
+
+        /* review and score */
+        .review-3d {
+            background: #c5bc93;
+            border-radius: 40px;
+            padding: 10px 14px;
+            max-height: 80px;
+            overflow-y: auto;
+            border: 3px solid #96874d;
+            box-shadow: inset 0 0 12px #ffffdd;
+            font-size: 0.85rem;
+            margin: 6px 0 4px;
+        }
+        .score-3d {
+            background: #a59960;
+            border-radius: 60px;
+            padding: 8px 18px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-align: center;
+            border: 5px solid #ecd998;
+            box-shadow: 0 6px 0 #5f6653, inset 0 2px 16px #ffffcf;
+            margin: 6px 0 2px;
+        }
+        .restart-3d {
+            background: #5d6a58;
+            color: #fcf2bf;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: 4px solid #caac64;
+            box-shadow: 0 10px 0 #3a4942, 0 8px 18px black;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.08s;
+            transform: translateY(-3px);
+            margin-top: 5px;
+        }
+        .restart-3d:active {
+            transform: translateY(5px);
+            box-shadow: 0 5px 0 #3a4942, 0 8px 18px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="threeD-card" id="quizCard">
+        <!-- header -->
+        <div class="header-3d">
+            <div class="glow-title"><span>⚖️</span> THE BET <span>⚖️</span></div>
+            <div class="author-3d">Anton Chekhov</div>
+            <div class="fifty-3d">📜 MCQ QUIZ (1-50) 📜</div>
+        </div>
+
+        <!-- progress + streak -->
+        <div class="progress-3d">
+            <div class="prog-track"><div class="prog-glow" id="progressFill"></div></div>
+            <div class="streak-3d" id="streakDisplay">🔥 0</div>
+        </div>
+
+        <!-- question panel -->
+        <div class="question-vault" id="questionVault">
+            <div class="q-3d" id="questionText">Loading...</div>
+            <div class="options-3d" id="optionsContainer"></div>
+            <div class="feedback-3d" id="feedbackMsg">✨ select an option</div>
+        </div>
+
+        <!-- bottom controls -->
+        <div class="bottom-controls">
+            <div class="nav-3d">
+                <button class="nav-btn-3d" id="prevBtn" disabled>◀ PREV</button>
+                <button class="nav-btn-3d" id="nextBtn">NEXT ▶</button>
+            </div>
+
+            <!-- horizontal number scroller - with centered label in Bangla -->
+            <div class="chip-scroller">
+                <div class="scroll-label-3d">
+                    📌 যে কোন প্রশ্ন দেখতে নাম্বারে ক্লিক করুন
+                </div>
+                <div class="chip-horizontal" id="numberScroll"></div>
+            </div>
+        </div>
+
+        <!-- review & score -->
+        <div class="review-3d" id="reviewContainer" style="display: none;"></div>
+        <div class="score-3d" id="scoreDisplay" style="display: none;">🏆 <span id="scoreValue">0</span>/50</div>
+        <div class="restart-3d" id="restartBtn">⟲ RESTART</div>
+    </div>
+
+    <script>
+        (function() {
+            // 50 MCQ questions 1 to 50 (The Bet) - Based on user's provided data
+            const questions = [
+                {
+                    q: "1. What kind of night was it when the old banker was walking in his study?",
+                    a: "A warm summer night",
+                    b: "A bright spring morning",
+                    c: "A dark autumn night",
+                    d: "A cold winter evening",
+                    correct: "C"
+                },
+                {
+                    q: "2. What was the old banker doing in his study?",
+                    a: "Reading a book",
+                    b: "Counting his money",
+                    c: "Walking up and down and remembering",
+                    d: "Writing a letter",
+                    correct: "C"
+                },
+                {
+                    q: "3. How long ago had the banker given a party?",
+                    a: "Five years before",
+                    b: "Ten years before",
+                    c: "Fifteen years before",
+                    d: "Twenty years before",
+                    correct: "C"
+                },
+                {
+                    q: "4. When had the banker given this party?",
+                    a: "On a winter evening",
+                    b: "On a spring afternoon",
+                    c: "On an autumn evening",
+                    d: "On a summer night",
+                    correct: "C"
+                },
+                {
+                    q: "5. Who were at the party?",
+                    a: "Only family members",
+                    b: "Many clever men",
+                    c: "Business partners only",
+                    d: "The banker's servants",
+                    correct: "B"
+                },
+                {
+                    q: "6. What kind of conversations took place at the party?",
+                    a: "Boring and dull conversations",
+                    b: "Conversations about money",
+                    c: "Interesting conversations",
+                    d: "Conversations about the weather",
+                    correct: "C"
+                },
+                {
+                    q: "7. Among other things, what had they talked about?",
+                    a: "The stock market",
+                    b: "Capital punishment",
+                    c: "Their favorite books",
+                    d: "New business ventures",
+                    correct: "B"
+                },
+                {
+                    q: "8. Who made up the majority of the guests?",
+                    a: "Lawyers and doctors",
+                    b: "Journalists and intellectual men",
+                    c: "Artists and musicians",
+                    d: "Politicians and businessmen",
+                    correct: "B"
+                },
+                {
+                    q: "9. How did the majority of the guests feel about the death penalty?",
+                    a: "They strongly supported it",
+                    b: "They disapproved of it",
+                    c: "They had no opinion on it",
+                    d: "They thought it should be used more often",
+                    correct: "B"
+                },
+                {
+                    q: "10. What did they consider the death penalty to be?",
+                    a: "A modern and effective punishment",
+                    b: "Out of date, immoral, and unsuitable for Christian States",
+                    c: "The only fair punishment for serious crimes",
+                    d: "A necessary evil in society",
+                    correct: "B"
+                },
+                {
+                    q: "11. In the opinion of some, what should the death penalty be replaced by everywhere?",
+                    a: "Hard labor",
+                    b: "Exile",
+                    c: "Imprisonment for life",
+                    d: "A large fine",
+                    correct: "C"
+                },
+                {
+                    q: "12. Who disagreed with the opinion of the majority?",
+                    a: "A young journalist",
+                    b: "An intellectual man",
+                    c: "Their host the banker",
+                    d: "A visiting professor",
+                    correct: "C"
+                },
+                {
+                    q: "13. Which punishments had the banker tried?",
+                    a: "Both the death penalty and imprisonment for life",
+                    b: "Neither the death penalty nor imprisonment for life",
+                    c: "Only the death penalty",
+                    d: "Only imprisonment for life",
+                    correct: "B"
+                },
+                {
+                    q: "14. How did the banker say one must judge the two punishments?",
+                    a: "From experience",
+                    b: "From statistics",
+                    c: "A priori (by theory/deduction)",
+                    d: "From public opinion",
+                    correct: "C"
+                },
+                {
+                    q: "15. According to the banker, which punishment is more moral and humane?",
+                    a: "Imprisonment for life",
+                    b: "The death penalty",
+                    c: "They are equally moral",
+                    d: "Neither is moral or humane",
+                    correct: "B"
+                },
+                {
+                    q: "16. How does capital punishment kill a man, according to the banker?",
+                    a: "Slowly, over many years",
+                    b: "By dragging the life out of him",
+                    c: "At once",
+                    d: "By making him suffer in prison",
+                    correct: "C"
+                },
+                {
+                    q: "17. How does lifelong imprisonment kill a man, according to the banker?",
+                    a: "Quickly",
+                    b: "Slowly",
+                    c: "Painlessly",
+                    d: "By execution",
+                    correct: "B"
+                },
+                {
+                    q: "18. Which executioner did the banker ask is more humane?",
+                    a: "The one who uses a new method",
+                    b: "The one who kills you in a few minutes",
+                    c: "The one who drags the life out of you over many years",
+                    d: "The one who is paid the most",
+                    correct: "B"
+                },
+                {
+                    q: "19. What did one guest observe about both punishments?",
+                    a: "That they are both equally necessary",
+                    b: "That they are both equally immoral",
+                    c: "That they are both very rare",
+                    d: "That they both have different objects",
+                    correct: "B"
+                },
+                {
+                    q: "20. According to this guest, what is the same object of both punishments?",
+                    a: "To reform the criminal",
+                    b: "To take away life",
+                    c: "To protect society",
+                    d: "To make an example of the criminal",
+                    correct: "B"
+                },
+                {
+                    q: "21. What did the guest say the State is not?",
+                    a: "The law",
+                    b: "God",
+                    c: "Fair",
+                    d: "Perfect",
+                    correct: "B"
+                },
+                {
+                    q: "22. What right did the guest say the State does not have?",
+                    a: "The right to make laws",
+                    b: "The right to imprison people",
+                    c: "The right to take away what it cannot restore",
+                    d: "The right to judge people",
+                    correct: "C"
+                },
+                {
+                    q: "23. Who was among the guests?",
+                    a: "An old judge",
+                    b: "A young lawyer",
+                    c: "A famous writer",
+                    d: "A prison warden",
+                    correct: "B"
+                },
+                {
+                    q: "24. How old was the young lawyer?",
+                    a: "Twenty",
+                    b: "Twenty-two",
+                    c: "Five-and-twenty (25)",
+                    d: "Thirty",
+                    correct: "C"
+                },
+                {
+                    q: "25. When asked his opinion, what did the young man say about the two sentences?",
+                    a: "The death sentence is worse",
+                    b: "The life sentence is worse",
+                    c: "They are equally immoral",
+                    d: "They are both moral",
+                    correct: "C"
+                },
+                {
+                    q: "26. If he had to choose, which would the young lawyer choose?",
+                    a: "The death penalty",
+                    b: "Imprisonment for life",
+                    c: "Exile",
+                    d: "A heavy fine",
+                    correct: "B"
+                },
+                {
+                    q: "27. What was the young lawyer's reason for his choice?",
+                    a: "Life in prison is easy",
+                    b: "He was afraid of death",
+                    c: "To live anyhow is better than not at all",
+                    d: "He thought he could escape",
+                    correct: "C"
+                },
+                {
+                    q: "28. What arose after the young lawyer's statement?",
+                    a: "A lively discussion",
+                    b: "A sudden silence",
+                    c: "An argument about money",
+                    d: "A agreement with the banker",
+                    correct: "A"
+                },
+                {
+                    q: "29. How did the banker react to the discussion in those days?",
+                    a: "He was calm and collected",
+                    b: "He was indifferent",
+                    c: "He was younger and more nervous, and was carried away by excitement",
+                    d: "He left the room",
+                    correct: "C"
+                },
+                {
+                    q: "30. What did the banker do in his excitement?",
+                    a: "He laughed loudly",
+                    b: "He struck the table with his fist",
+                    c: "He walked out of the room",
+                    d: "He apologized to the guests",
+                    correct: "B"
+                },
+                {
+                    q: "31. What did the banker shout at the young man?",
+                    a: "\"You are a fool!\"",
+                    b: "\"I agree with you!\"",
+                    c: "\"It's not true! I'll bet you two millions you wouldn't stay in solitary confinement for five years.\"",
+                    d: "\"Let us discuss this calmly.\"",
+                    correct: "C"
+                },
+                {
+                    q: "32. How many years did the banker first bet the young man wouldn't stay in solitary confinement?",
+                    a: "One year",
+                    b: "Three years",
+                    c: "Five years",
+                    d: "Ten years",
+                    correct: "C"
+                },
+                {
+                    q: "33. What did the young man say he would do if the banker meant it in earnest?",
+                    a: "He would take the bet and stay for five years",
+                    b: "He would not take the bet",
+                    c: "He would take the bet, but stay not five but fifteen years",
+                    d: "He would take the bet for two million dollars",
+                    correct: "C"
+                },
+                {
+                    q: "34. For how many years did the young man agree to stay?",
+                    a: "Five years",
+                    b: "Ten years",
+                    c: "Twelve years",
+                    d: "Fifteen years",
+                    correct: "D"
+                },
+                {
+                    q: "35. What was the banker's final cry when the young man agreed?",
+                    a: "\"Agreed!\"",
+                    b: "\"Fifteen? Done!\"",
+                    c: "\"It's a bet!\"",
+                    d: "\"Wonderful!\"",
+                    correct: "B"
+                },
+                {
+                    q: "36. Who did the banker say he was staking his millions for?",
+                    a: "The guests",
+                    b: "The young man",
+                    c: "The lawyers",
+                    d: "Gentlemen (the company)",
+                    correct: "D"
+                },
+                {
+                    q: "37. What did the young man say he was staking?",
+                    a: "His career",
+                    b: "His freedom",
+                    c: "His money",
+                    d: "His reputation",
+                    correct: "B"
+                },
+                {
+                    q: "38. How did the banker describe the bet later while remembering?",
+                    a: "Wise and clever",
+                    b: "Necessary and important",
+                    c: "Wild and senseless",
+                    d: "Fair and reasonable",
+                    correct: "C"
+                },
+                {
+                    q: "39. How was the banker described at the time of the bet?",
+                    a: "Poor and nervous",
+                    b: "Spoilt and frivolous, with millions beyond his reckoning",
+                    c: "Careful and thoughtful",
+                    d: "Old and wise",
+                    correct: "B"
+                },
+                {
+                    q: "40. How did the banker feel about the bet at supper?",
+                    a: "He was worried",
+                    b: "He was delighted",
+                    c: "He was regretful",
+                    d: "He was indifferent",
+                    correct: "B"
+                },
+                {
+                    q: "41. What did the banker do at supper regarding the young man?",
+                    a: "He praised him",
+                    b: "He ignored him",
+                    c: "He made fun of him",
+                    d: "He drank a toast with him",
+                    correct: "C"
+                },
+                {
+                    q: "42. What did the banker advise the young man to do?",
+                    a: "To prepare for the confinement",
+                    b: "To think better of it while there was still time",
+                    c: "To increase the bet",
+                    d: "To tell his family",
+                    correct: "B"
+                },
+                {
+                    q: "43. What did the banker say the two millions were to him?",
+                    a: "His entire fortune",
+                    b: "A great sum",
+                    c: "A trifle",
+                    d: "His life savings",
+                    correct: "C"
+                },
+                {
+                    q: "44. How many of the best years of his life did the banker say the young man was losing?",
+                    a: "One or two",
+                    b: "Three or four",
+                    c: "Ten",
+                    d: "All of them",
+                    correct: "B"
+                },
+                {
+                    q: "45. Why did the banker say voluntary confinement is harder to bear than compulsory?",
+                    a: "Because you are alone",
+                    b: "Because there is no hope",
+                    c: "Because the thought that you have the right to step out at any moment will poison your existence",
+                    d: "Because you have no books",
+                    correct: "C"
+                },
+                {
+                    q: "46. What did the banker call the young man when giving him advice?",
+                    a: "My friend",
+                    b: "You happy man",
+                    c: "You unhappy man",
+                    d: "You clever fellow",
+                    correct: "C"
+                },
+                {
+                    q: "47. As the banker walked to and fro years later, what did he ask himself about the bet?",
+                    a: "Who had won the bet?",
+                    b: "What was the object of that bet?",
+                    c: "When would it end?",
+                    d: "Was it fair?",
+                    correct: "B"
+                },
+                {
+                    q: "48. What was the good of the man losing fifteen years and the banker throwing away two millions?",
+                    a: "It proved a point about punishment",
+                    b: "It was a good investment",
+                    c: "The question implied it had no good",
+                    d: "It made them both famous",
+                    correct: "C"
+                },
+                {
+                    q: "49. Could the bet prove whether the death penalty is better or worse than life imprisonment?",
+                    a: "Yes, it proved it perfectly",
+                    b: "The banker thought not; it was nonsensical and meaningless",
+                    c: "Only partially",
+                    d: "It proved the opposite",
+                    correct: "B"
+                },
+                {
+                    q: "50. On the banker's part, what did he think the bet was?",
+                    a: "A scientific experiment",
+                    b: "A generous offer",
+                    c: "The caprice of a pampered man",
+                    d: "A way to help a young man",
+                    correct: "C"
+                }
+            ];
+
+            let currentIdx = 0;
+            let userAnswers = new Array(questions.length).fill(null);
+            let answerStatus = new Array(questions.length).fill(false);
+            let streak = 0;
+
+            // DOM elements
+            const qText = document.getElementById('questionText');
+            const optsDiv = document.getElementById('optionsContainer');
+            const feedbackDiv = document.getElementById('feedbackMsg');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressFill = document.getElementById('progressFill');
+            const streakSpan = document.getElementById('streakDisplay');
+            const numberScroll = document.getElementById('numberScroll');
+            const reviewDiv = document.getElementById('reviewContainer');
+            const scoreDiv = document.getElementById('scoreDisplay');
+            const scoreSpan = document.getElementById('scoreValue');
+            const restartBtn = document.getElementById('restartBtn');
+
+            function computeScore() {
+                return userAnswers.reduce((acc, ans, idx) => acc + (ans && ans === questions[idx].correct ? 1 : 0), 0);
+            }
+            function answeredCount() { return answerStatus.filter(Boolean).length; }
+
+            function updateProgressAndStreak() {
+                progressFill.style.width = (answeredCount()/questions.length)*100 + '%';
+                streakSpan.innerHTML = `🔥 ${streak}`;
+            }
+
+            function renderNumberScroll() {
+                let html = '';
+                for (let i=0; i<questions.length; i++) {
+                    let cls = 'num-chip-3d';
+                    if (i === currentIdx) cls += ' current-chip';
+                    if (answerStatus[i]) cls += ' answered-chip';
+                    html += `<div class="${cls}" data-qidx="${i}">${i+1}</div>`;
+                }
+                numberScroll.innerHTML = html;
+                document.querySelectorAll('.num-chip-3d').forEach(ch => {
+                    ch.addEventListener('click', () => {
+                        let idx = ch.dataset.qidx;
+                        if (idx !== undefined) { currentIdx = parseInt(idx); renderQuestion(); renderNumberScroll(); }
+                    });
+                });
+            }
+
+            function renderQuestion() {
+                const q = questions[currentIdx];
+                qText.innerText = q.q;
+                const letters = ['A', 'B', 'C', 'D'];
+                const opts = [q.a, q.b, q.c, q.d];
+                
+                let optionsHtml = '';
+                for (let i=0; i<4; i++) {
+                    let extraClass = '';
+                    if (answerStatus[currentIdx]) {
+                        if (userAnswers[currentIdx] === letters[i]) extraClass = (letters[i] === q.correct) ? 'correct' : 'wrong';
+                        else if (letters[i] === q.correct) extraClass = 'correct';
+                    }
+                    const disabled = answerStatus[currentIdx] ? 'disabled' : '';
+                    optionsHtml += `<div class="opt-3d ${extraClass} ${disabled}" data-opt="${letters[i]}">
+                        <span class="letter-3d">${letters[i]}</span>
+                        <span>${opts[i]}</span>
+                    </div>`;
+                }
+                optsDiv.innerHTML = optionsHtml;
+                
+                if (!answerStatus[currentIdx]) {
+                    document.querySelectorAll('.opt-3d').forEach(opt => {
+                        opt.addEventListener('click', e => {
+                            if (answerStatus[currentIdx]) return;
+                            const selected = opt.dataset.opt;
+                            userAnswers[currentIdx] = selected;
+                            answerStatus[currentIdx] = true;
+                            if (selected === q.correct) streak++; else streak = 0;
+                            updateProgressAndStreak();
+                            renderQuestion();
+                            renderNumberScroll();
+                            updateReviewAndScore();
+                        });
+                    });
+                }
+                
+                feedbackDiv.innerText = answerStatus[currentIdx] 
+                    ? (userAnswers[currentIdx] === q.correct ? '✅ Correct!' : `❌ Correct answer: ${q.correct}`) 
+                    : '✨ select an option';
+                prevBtn.disabled = (currentIdx === 0);
+                nextBtn.disabled = (currentIdx === questions.length - 1);
+            }
+
+            function updateReviewAndScore() {
+                let s = computeScore();
+                scoreSpan.innerText = s;
+                if (answeredCount()>0) scoreDiv.style.display = 'block';
+                let wrongs = [];
+                for (let i=0; i<questions.length; i++) if (answerStatus[i] && userAnswers[i] !== questions[i].correct) wrongs.push(i);
+                if (wrongs.length===0) reviewDiv.innerHTML = '<div>✨ perfect so far</div>';
+                else {
+                    let rev = '';
+                    wrongs.slice(0,4).forEach(w => rev += `<div>• Q${w+1} (correct: ${questions[w].correct})</div>`);
+                    if (wrongs.length>4) rev += `<div>... +${wrongs.length-4} more</div>`;
+                    reviewDiv.innerHTML = rev;
+                }
+                reviewDiv.style.display = 'block';
+            }
+
+            function goPrev() { if (currentIdx > 0) { currentIdx--; renderQuestion(); renderNumberScroll(); } }
+            function goNext() { if (currentIdx < questions.length - 1) { currentIdx++; renderQuestion(); renderNumberScroll(); } }
+            prevBtn.addEventListener('click', goPrev);
+            nextBtn.addEventListener('click', goNext);
+
+            function restart() {
+                currentIdx = 0; 
+                userAnswers.fill(null); 
+                answerStatus.fill(false); 
+                streak = 0;
+                updateProgressAndStreak(); 
+                renderQuestion(); 
+                renderNumberScroll(); 
+                reviewDiv.style.display = 'none'; 
+                scoreDiv.style.display = 'none';
+            }
+            restartBtn.addEventListener('click', restart);
+
+            // Initial render
+            renderNumberScroll();
+            renderQuestion();
+            updateProgressAndStreak();
+            reviewDiv.style.display = 'none';
+            scoreDiv.style.display = 'none';
+        })();
+    </script>
+</body>
+</html>
