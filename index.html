@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Bet · MCQ Quiz (1-50) · Anton Chekhov</title>
+    <title>The Bet · Banker & Lawyer (1-50)</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             min-height: 100vh;
-            background: radial-gradient(circle at 40% 30%, #2a4f45, #0f2e2a 90%);
+            background: radial-gradient(circle at 30% 20%, #1e3c2c, #0e2a1f 90%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -23,22 +23,22 @@
             perspective: 1200px;
         }
 
-        /* main 3D card */
+        /* main 3D card – fits perfectly */
         .threeD-card {
-            max-width: 550px;
+            max-width: 500px;
             width: 100%;
-            background: rgba(235, 225, 200, 0.94);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background: rgba(215, 225, 200, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-radius: 60px 60px 50px 50px;
-            padding: 20px 16px 15px 16px;
+            padding: 20px 18px 15px 18px;
             box-shadow: 
                 0 30px 40px -15px #000000cc,
-                0 0 0 2px #ccb48c,
-                inset 0 -8px 12px #9f8f64,
-                inset 0 8px 12px #ffffe0;
+                0 0 0 2px #c0b28a,
+                inset 0 -8px 12px #8f7d5c,
+                inset 0 8px 12px #f2f0d2;
             transform: rotateX(2deg) rotateY(-0.5deg) translateZ(8px);
-            border: 1px solid #dbbc8c;
+            border: 1px solid #dac292;
             transition: transform 0.2s;
             max-height: 95vh;
             display: flex;
@@ -56,9 +56,9 @@
             filter: drop-shadow(0 8px 6px #00000050);
         }
         .glow-title {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 900;
-            background: linear-gradient(145deg, #2b5e4e, #6b7a4a);
+            background: linear-gradient(145deg, #2b4b2b, #5f6b3a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 4px 4px 0 #b8a87c, 6px 6px 10px #00000070;
@@ -66,34 +66,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
         .glow-title span {
-            font-size: 2.0rem;
+            font-size: 2.2rem;
             filter: drop-shadow(0 0 6px #ecd67a);
         }
         .author-3d {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            background: #3b6350;
-            color: #fcf0d5;
+            background: #3d5e3d;
+            color: #f0ecd6;
             display: inline-block;
-            padding: 5px 28px;
+            padding: 5px 30px;
             border-radius: 60px;
-            border: 3px solid #cfb07c;
-            box-shadow: 0 10px 0 #2a473a, 0 12px 18px black;
-            margin: 4px 0 4px;
+            border: 3px solid #ccb277;
+            box-shadow: 0 10px 0 #24422c, 0 12px 18px black;
+            margin: 6px 0 4px;
             transform: rotate(-0.5deg);
         }
         .fifty-3d {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            background: #584a2f;
-            color: #ffeec9;
-            padding: 5px 25px;
+            background: #52452b;
+            color: #ffefc0;
+            padding: 6px 28px;
             border-radius: 60px;
-            border: 2px solid #c2a158;
-            box-shadow: inset 0 -5px 0 #423b22, 0 8px 0 #3d311b;
+            border: 2px solid #c5a15b;
+            box-shadow: inset 0 -5px 0 #3f321d, 0 9px 0 #332b18;
             display: inline-block;
             transform: translateY(-3px);
             margin-bottom: 5px;
@@ -103,22 +103,22 @@
         .progress-3d {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: #7f8f7a80;
-            padding: 5px 12px 5px 16px;
+            gap: 10px;
+            background: #7f8f6b80;
+            padding: 6px 14px 6px 18px;
             border-radius: 50px;
-            border: 2px solid #b8a16e;
-            box-shadow: inset 0 2px 8px #e8dbaa, 0 6px 0 #556845;
-            margin: 4px 0 8px;
+            border: 2px solid #af9b64;
+            box-shadow: inset 0 2px 8px #e8dbaa, 0 6px 0 #4f6040;
+            margin: 5px 0 12px;
         }
         .prog-track {
             flex: 1;
-            height: 16px;
-            background: #2d4035;
+            height: 18px;
+            background: #2d3d24;
             border-radius: 30px;
-            border: 2px solid #a18f5a;
+            border: 2px solid #9c8a52;
             overflow: hidden;
-            box-shadow: inset 0 3px 6px #1f2d22;
+            box-shadow: inset 0 3px 6px #141f10;
         }
         .prog-glow {
             height: 100%;
@@ -131,62 +131,59 @@
         .streak-3d {
             background: #6f563a;
             color: #ffeec9;
-            padding: 4px 18px;
+            padding: 6px 22px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             border: 2px solid #e7b56c;
-            box-shadow: 0 5px 0 #4f3f26, inset 0 2px 10px #ffd994;
+            box-shadow: 0 6px 0 #4f3f26, inset 0 2px 10px #ffd994;
             white-space: nowrap;
         }
 
         /* question panel */
         .question-vault {
-            background: #e3ddc0;
+            background: #dee2c0;
             border-radius: 42px;
-            padding: 18px 16px;
-            border: 3px solid #a3905e;
-            box-shadow: inset 0 -8px 0 #8b7b4f, inset 0 8px 12px #ffffe0, 0 18px 20px -8px #000000b0;
-            margin-bottom: 6px;
-            overflow-y: auto;
-            max-height: 60vh;
+            padding: 20px 18px;
+            border: 3px solid #9b8b5c;
+            box-shadow: inset 0 -8px 0 #837951, inset 0 8px 12px #ffffe0, 0 18px 20px -8px #000000b0;
+            margin-bottom: 8px;
         }
         .q-3d {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #1f4030;
-            line-height: 1.45;
-            padding-left: 12px;
-            border-left: 12px solid #bf954b;
+            color: #1f3c2d;
+            line-height: 1.4;
+            padding-left: 14px;
+            border-left: 12px solid #b58f4f;
             text-shadow: 1px 1px 0 #dbd6a4;
-            margin-bottom: 18px;
-            white-space: pre-wrap;
+            margin-bottom: 20px;
         }
 
         .options-3d {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
         .opt-3d {
             background: #f5f2dd;
             border: 3px solid #8f7b48;
-            border-radius: 60px;
-            padding: 12px 18px 12px 12px;
+            border-radius: 50px;
+            padding: 13px 18px 13px 12px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 22px;
             font-weight: 600;
-            font-size: 1.0rem;
+            font-size: 1.1rem;
             color: #1f3f2f;
             cursor: pointer;
-            box-shadow: 0 7px 0 #5f6b52, 0 10px 18px #1a2f2f80;
+            box-shadow: 0 9px 0 #5f6b3a, 0 10px 18px #1a2f1f80;
             transition: 0.08s linear;
             transform: translateY(-2px);
         }
         .opt-3d:active {
             transform: translateY(5px);
-            box-shadow: 0 4px 0 #5f6b52, 0 10px 18px #1a2f2f80;
+            box-shadow: 0 4px 0 #5f6b3a, 0 10px 18px #1a2f1f80;
         }
         .opt-3d.disabled {
             pointer-events: none;
@@ -196,41 +193,40 @@
         .opt-3d.correct {
             background: #bfddb0;
             border-color: #3c854a;
-            box-shadow: 0 5px 0 #2a6b32, 0 10px 18px #1d5428;
+            box-shadow: 0 7px 0 #2a6b32, 0 10px 18px #1d5428;
         }
         .opt-3d.wrong {
             background: #f3cfbe;
             border-color: #b1583a;
-            box-shadow: 0 5px 0 #944b30, 0 10px 18px #692d1b;
+            box-shadow: 0 7px 0 #944b30, 0 10px 18px #692d1b;
         }
         .letter-3d {
-            background: #5f6f4a;
-            min-width: 44px;
-            height: 44px;
+            background: #676f42;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
+            font-size: 2rem;
             font-weight: 900;
             color: #fcf3cf;
-            border: 3px solid #eac382;
-            box-shadow: 0 4px 0 #3f4739;
+            border: 4px solid #eac382;
+            box-shadow: 0 4px 0 #3f4729;
         }
         .correct .letter-3d { background: #1f7845; border-color: #f7eca9; }
         .wrong .letter-3d { background: #b6492e; border-color: #ffdbaa; }
 
         .feedback-3d {
-            background: #c0bc97;
-            border-radius: 50px;
-            padding: 8px 22px;
+            background: #c0bc8f;
+            border-radius: 60px;
+            padding: 10px 24px;
             font-weight: 700;
             display: inline-block;
-            margin-top: 10px;
-            border: 2px solid #888259;
-            box-shadow: inset 0 2px 8px #fffbc2, 0 5px 0 #5e6253;
-            color: #1f3832;
-            font-size: 0.95rem;
+            margin-top: 12px;
+            border: 2px solid #888249;
+            box-shadow: inset 0 2px 8px #fffbc2, 0 5px 0 #5e623b;
+            color: #1f3825;
         }
 
         /* bottom controls */
@@ -247,74 +243,72 @@
         }
         .nav-btn-3d {
             flex: 1;
-            background: #ccbf9b;
-            border: 4px solid #857652;
+            background: #ccbf93;
+            border: 4px solid #857642;
             border-radius: 60px;
-            padding: 12px 5px;
+            padding: 14px 5px;
             font-weight: 800;
-            font-size: 1.1rem;
-            color: #1d3f3f;
+            font-size: 1.2rem;
+            color: #1d3f2a;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 7px 0 #616653, 0 8px 14px #00000060;
+            box-shadow: 0 9px 0 #61663c, 0 8px 14px #00000060;
             transition: 0.06s;
             transform: translateY(-3px);
         }
         .nav-btn-3d:active {
             transform: translateY(4px);
-            box-shadow: 0 4px 0 #616653, 0 8px 14px #00000060;
+            box-shadow: 0 4px 0 #61663c, 0 8px 14px #00000060;
         }
         .nav-btn-3d:disabled {
             opacity: 0.45;
             transform: translateY(0);
-            box-shadow: 0 5px 0 #4f5453;
+            box-shadow: 0 5px 0 #4f5433;
             pointer-events: none;
         }
 
-        /* horizontal scroller - fixed centered label */
+        /* horizontal scroller */
         .chip-scroller {
-            background: #687a6580;
+            background: #687a4d80;
             backdrop-filter: blur(10px);
             border-radius: 60px;
-            padding: 10px 8px;
+            padding: 12px 8px;
             border: 3px solid #aa9457;
-            box-shadow: inset 0 2px 8px #f3efba, 0 8px 0 #49564c;
-            margin: 4px 0 5px;
+            box-shadow: inset 0 2px 8px #f3efba, 0 10px 0 #495634;
+            margin: 5px 0 6px;
         }
         .scroll-label-3d {
             font-size: 0.9rem;
             font-weight: 600;
-            color: #17322a;
-            background: #cfc1a6;
-            padding: 6px 18px;
+            color: #17321f;
+            background: #cfc196;
+            display: inline-block;
+            padding: 6px 20px;
             border-radius: 40px;
-            margin: 0 auto 12px auto;
+            margin-bottom: 12px;
             border: 2px solid #9e884b;
-            box-shadow: inset 0 2px 8px #fff7cf, 0 4px 0 #5f6b59;
+            box-shadow: inset 0 2px 8px #fff7cf, 0 5px 0 #5f6b41;
             transform: translateY(-3px);
-            width: fit-content;
-            text-align: center;
-            display: table;
         }
         .chip-horizontal {
             display: flex;
             overflow-x: auto;
-            gap: 10px;
-            padding: 5px 2px 10px 2px;
+            gap: 12px;
+            padding: 6px 3px 14px 3px;
             scrollbar-width: thin;
             scrollbar-color: #9b884b #dacaa4;
             -webkit-overflow-scrolling: touch;
         }
         .chip-horizontal::-webkit-scrollbar {
-            height: 6px;
+            height: 7px;
         }
         .chip-horizontal::-webkit-scrollbar-thumb {
             background: #9b884b;
             border-radius: 30px;
         }
         .num-chip-3d {
-            min-width: 46px;
-            height: 46px;
+            min-width: 54px;
+            height: 54px;
             border-radius: 40px;
             background: #e3dcb1;
             border: 4px solid #877e43;
@@ -322,23 +316,23 @@
             align-items: center;
             justify-content: center;
             font-weight: 900;
-            font-size: 1.2rem;
-            color: #232b1a;
-            box-shadow: 0 6px 0 #535f4a, 0 6px 12px #00000070;
+            font-size: 1.4rem;
+            color: #232b12;
+            box-shadow: 0 7px 0 #535f32, 0 6px 12px #00000070;
             cursor: pointer;
             flex-shrink: 0;
             transition: 0.05s;
         }
         .num-chip-3d:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 #535f4a, 0 6px 12px #00000070;
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #535f32, 0 6px 12px #00000070;
         }
         .num-chip-3d.current-chip {
             background: #d8b567;
             border-color: #6b592b;
             color: white;
-            transform: scale(1.05);
-            box-shadow: 0 0 0 4px #f7da95, 0 6px 0 #5c512b;
+            transform: scale(1.07);
+            box-shadow: 0 0 0 4px #f7da95, 0 7px 0 #5c512b;
         }
         .num-chip-3d.answered-chip {
             background: #adcf9a;
@@ -347,36 +341,36 @@
 
         /* review and score */
         .review-3d {
-            background: #c5bc93;
+            background: #c5bc8b;
             border-radius: 40px;
-            padding: 10px 14px;
-            max-height: 80px;
+            padding: 12px 15px;
+            max-height: 85px;
             overflow-y: auto;
             border: 3px solid #96874d;
             box-shadow: inset 0 0 12px #ffffdd;
-            font-size: 0.85rem;
-            margin: 6px 0 4px;
+            font-size: 0.9rem;
+            margin: 8px 0 4px;
         }
         .score-3d {
-            background: #a59960;
+            background: #a59958;
             border-radius: 60px;
-            padding: 8px 18px;
-            font-size: 1.8rem;
+            padding: 10px 20px;
+            font-size: 2rem;
             font-weight: 900;
             text-align: center;
             border: 5px solid #ecd998;
-            box-shadow: 0 6px 0 #5f6653, inset 0 2px 16px #ffffcf;
-            margin: 6px 0 2px;
+            box-shadow: 0 8px 0 #5f663b, inset 0 2px 16px #ffffcf;
+            margin: 8px 0 2px;
         }
         .restart-3d {
-            background: #5d6a58;
+            background: #5d6a40;
             color: #fcf2bf;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 60px;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             border: 4px solid #caac64;
-            box-shadow: 0 10px 0 #3a4942, 0 8px 18px black;
+            box-shadow: 0 12px 0 #3a492a, 0 8px 18px black;
             text-align: center;
             cursor: pointer;
             transition: 0.08s;
@@ -385,13 +379,13 @@
         }
         .restart-3d:active {
             transform: translateY(5px);
-            box-shadow: 0 5px 0 #3a4942, 0 8px 18px black;
+            box-shadow: 0 5px 0 #3a492a, 0 8px 18px black;
         }
     </style>
 </head>
 <body>
     <div class="threeD-card" id="quizCard">
-        <!-- header -->
+        <!-- header 3D -->
         <div class="header-3d">
             <div class="glow-title"><span>⚖️</span> THE BET <span>⚖️</span></div>
             <div class="author-3d">Anton Chekhov</div>
@@ -404,24 +398,24 @@
             <div class="streak-3d" id="streakDisplay">🔥 0</div>
         </div>
 
-        <!-- question panel -->
-        <div class="question-vault" id="questionVault">
+        <!-- question vault -->
+        <div class="question-vault">
             <div class="q-3d" id="questionText">Loading...</div>
             <div class="options-3d" id="optionsContainer"></div>
-            <div class="feedback-3d" id="feedbackMsg">✨ select an option</div>
+            <div class="feedback-3d" id="feedbackMsg">✨ choose an option</div>
         </div>
 
-        <!-- bottom controls -->
+        <!-- BOTTOM CONTROLS: prev/next + number scroller -->
         <div class="bottom-controls">
             <div class="nav-3d">
                 <button class="nav-btn-3d" id="prevBtn" disabled>◀ PREV</button>
                 <button class="nav-btn-3d" id="nextBtn">NEXT ▶</button>
             </div>
 
-            <!-- horizontal number scroller - with centered label in Bangla -->
+            <!-- horizontal number scroller (with label) -->
             <div class="chip-scroller">
                 <div class="scroll-label-3d">
-                    📌 যে কোন প্রশ্ন দেখতে নাম্বারে ক্লিক করুন
+                    📌 আপনি যদি কুইজ খেলতে না চান তবে যে কোন নাম্বারের কোশ্চেন এখানে দেখতে পাবেন। দেখার জন্য নাম্বারে ক্লিক করতে হবে।
                 </div>
                 <div class="chip-horizontal" id="numberScroll"></div>
             </div>
@@ -435,7 +429,7 @@
 
     <script>
         (function() {
-            // 50 MCQ questions 1 to 50 (The Bet) - Based on user's provided data
+            // Questions 1 to 50 – The Bet (Banker & Lawyer) based on user's provided data
             const questions = [
                 {
                     q: "1. What kind of night was it when the old banker was walking in his study?",
@@ -840,8 +834,8 @@
             ];
 
             let currentIdx = 0;
-            let userAnswers = new Array(questions.length).fill(null);
-            let answerStatus = new Array(questions.length).fill(false);
+            let userAnswers = new Array(50).fill(null);
+            let answerStatus = new Array(50).fill(false);
             let streak = 0;
 
             // DOM elements
@@ -864,13 +858,13 @@
             function answeredCount() { return answerStatus.filter(Boolean).length; }
 
             function updateProgressAndStreak() {
-                progressFill.style.width = (answeredCount()/questions.length)*100 + '%';
+                progressFill.style.width = (answeredCount()/50)*100 + '%';
                 streakSpan.innerHTML = `🔥 ${streak}`;
             }
 
             function renderNumberScroll() {
                 let html = '';
-                for (let i=0; i<questions.length; i++) {
+                for (let i=0; i<50; i++) {
                     let cls = 'num-chip-3d';
                     if (i === currentIdx) cls += ' current-chip';
                     if (answerStatus[i]) cls += ' answered-chip';
@@ -888,10 +882,9 @@
             function renderQuestion() {
                 const q = questions[currentIdx];
                 qText.innerText = q.q;
-                const letters = ['A', 'B', 'C', 'D'];
+                const letters = ['A','B','C','D'];
                 const opts = [q.a, q.b, q.c, q.d];
-                
-                let optionsHtml = '';
+                let html = '';
                 for (let i=0; i<4; i++) {
                     let extraClass = '';
                     if (answerStatus[currentIdx]) {
@@ -899,13 +892,12 @@
                         else if (letters[i] === q.correct) extraClass = 'correct';
                     }
                     const disabled = answerStatus[currentIdx] ? 'disabled' : '';
-                    optionsHtml += `<div class="opt-3d ${extraClass} ${disabled}" data-opt="${letters[i]}">
+                    html += `<div class="opt-3d ${extraClass} ${disabled}" data-opt="${letters[i]}">
                         <span class="letter-3d">${letters[i]}</span>
                         <span>${opts[i]}</span>
                     </div>`;
                 }
-                optsDiv.innerHTML = optionsHtml;
-                
+                optsDiv.innerHTML = html;
                 if (!answerStatus[currentIdx]) {
                     document.querySelectorAll('.opt-3d').forEach(opt => {
                         opt.addEventListener('click', e => {
@@ -921,12 +913,11 @@
                         });
                     });
                 }
-                
                 feedbackDiv.innerText = answerStatus[currentIdx] 
-                    ? (userAnswers[currentIdx] === q.correct ? '✅ Correct!' : `❌ Correct answer: ${q.correct}`) 
-                    : '✨ select an option';
+                    ? (userAnswers[currentIdx] === q.correct ? '✅ correct!' : `❌ correct: ${q.correct}`) 
+                    : '✨ pick one option';
                 prevBtn.disabled = (currentIdx === 0);
-                nextBtn.disabled = (currentIdx === questions.length - 1);
+                nextBtn.disabled = (currentIdx === 49);
             }
 
             function updateReviewAndScore() {
@@ -934,7 +925,7 @@
                 scoreSpan.innerText = s;
                 if (answeredCount()>0) scoreDiv.style.display = 'block';
                 let wrongs = [];
-                for (let i=0; i<questions.length; i++) if (answerStatus[i] && userAnswers[i] !== questions[i].correct) wrongs.push(i);
+                for (let i=0; i<50; i++) if (answerStatus[i] && userAnswers[i] !== questions[i].correct) wrongs.push(i);
                 if (wrongs.length===0) reviewDiv.innerHTML = '<div>✨ perfect so far</div>';
                 else {
                     let rev = '';
@@ -946,7 +937,7 @@
             }
 
             function goPrev() { if (currentIdx > 0) { currentIdx--; renderQuestion(); renderNumberScroll(); } }
-            function goNext() { if (currentIdx < questions.length - 1) { currentIdx++; renderQuestion(); renderNumberScroll(); } }
+            function goNext() { if (currentIdx < 49) { currentIdx++; renderQuestion(); renderNumberScroll(); } }
             prevBtn.addEventListener('click', goPrev);
             nextBtn.addEventListener('click', goNext);
 
@@ -972,4 +963,4 @@
         })();
     </script>
 </body>
-</html>
+</html
